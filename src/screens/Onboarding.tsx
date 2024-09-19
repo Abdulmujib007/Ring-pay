@@ -1,11 +1,17 @@
-import { View, Text,StyleSheet } from 'react-native'
-import React from 'react'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import React from "react";
 
-export default function Onboarding() {
+export default function Onboarding({ navigation }: any) {
+  // const { replace } = navigation;
+      const handleSighup = () => {
+        // replace("sighup");
+        navigation.navigate('sighup')
+  };
   return (
     <View>
-      <Text>what is it</Text>
+      <Pressable onPress={handleSighup}>
+        <Text>Create Account</Text>
+      </Pressable>
     </View>
-  )
+  );
 }
