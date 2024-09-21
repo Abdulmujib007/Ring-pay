@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    paddingTop: hp(5.4),
   },
   pinText: {
     textAlign: "center",
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     paddingVertical: hp(1),
   },
   requiredText: {
-    textAlign:'center',
+    textAlign: "center",
     paddingHorizontal: wp(10),
     fontSize: 16,
     color: "#7F7F7F",

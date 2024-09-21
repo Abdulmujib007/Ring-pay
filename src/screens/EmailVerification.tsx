@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "white",
+    paddingTop: hp(5.4),
   },
   emailVerif: {
     paddingTop: hp(14.53),
@@ -51,6 +52,6 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingHorizontal: wp(4.27),
-    paddingTop: hp(2.46)
+    paddingTop: hp(2.46),
   },
 });

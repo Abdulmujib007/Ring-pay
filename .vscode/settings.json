@@ -4,10 +4,13 @@
         "Formik",
         "lastmode",
         "mmkv",
+        "Passsword",
         "pincode",
         "Pressable",
         "setcurrency",
         "setpin",
+        "signup",
+        "SME’s",
         "Verif"
     ]
 }

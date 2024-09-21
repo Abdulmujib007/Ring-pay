@@ -1,50 +1,23 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import React, { ChangeEvent, useState } from "react";
-import BackSvg from "../components/atom/icons/BackSvg";
+import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import FormInput from "../components/atom/FormInput";
 import KeyboardAvoidView from "../components/molecule/KeyboardAvoidView";
-import PasswordShowSvg from "../components/atom/icons/PasswordShowSvg";
-import PasswordHideSvg from "../components/atom/icons/PasswordHideSvg";
 import { TextInput } from "react-native-gesture-handler";
 import CountrySvg from "../components/atom/icons/CountrySvg";
 import ArrowDownSvg from "../components/atom/icons/ArrowDownSvg";
-import GoogleSvg from "../components/atom/icons/GoogleSvg";
 import BackBtn from "../components/atom/BackBtn";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import AppButton from "../components/atom/AppButton";
+import GoogleLogin from "../components/molecule/GoogleLogin";
+import PasswordFormInput from "../components/molecule/PasswordFormInput";
+import { signUpValidationSchema as validationSchema } from "../utils/yupValidationSchema";
 
 export default function SignUp({ navigation }: any) {
-  const handleText = () => {};
-  const [passwordShow, setPasswordShow] = useState(true);
   const [focusColor, setFocusColor] = useState(false);
-
-  const validationSchema = yup.object().shape({
-    firstName: yup
-      .string()
-      .min(6, "Minimum character is six")
-      .required("First Name is required"),
-    lastName: yup
-      .string()
-      .min(6, "Minimum character is six")
-      .required("Last Name is required"),
-    email: yup
-      .string()
-      .min(6, "Minimum character is six")
-      .required("Email is required"),
-    phoneNumber: yup
-      .number()
-      .min(6, "Minimum character is six")
-      .required("Phone Number is required"),
-    password: yup
-      .string()
-      .min(6, "Minimum character is six")
-      .required("Password is required"),
-  });
 
   const initialValues = {
     firstName: "",
@@ -73,7 +46,13 @@ export default function SignUp({ navigation }: any) {
           <Text style={styles.lessThanMinText}>
             It takes less than a minute to create an account. Already have an
             account?
-            <Text style={{ color: "#25B14F" }}> Log in here</Text>
+            <Text
+              onPress={() => navigation.navigate("login")}
+              style={{ color: "#25B14F" }}
+            >
+              {" "}
+              Log in here
+            </Text>
           </Text>
           <View style={styles.formView}>
             <View>
@@ -144,51 +123,20 @@ export default function SignUp({ navigation }: any) {
             </View>
 
             <View>
-              <FormInput
-                placeholder="Password"
-                onChangeText={formik.handleChange("password")}
-                secureTextEntry={passwordShow}
-              >
-                {passwordShow && (
-                  <PasswordShowSvg onPress={() => setPasswordShow(false)} />
-                )}
-                {!passwordShow && (
-                  <PasswordHideSvg onPress={() => setPasswordShow(true)} />
-                )}
-              </FormInput>
+              <PasswordFormInput password={formik.handleChange("password")} />
               {formik.touched.password && formik.errors.password && (
                 <Text style={{ color: "#d73a4a" }}>
                   {formik.errors.password}
                 </Text>
               )}
             </View>
-           
-            <AppButton onPress={(e: any) => formik.handleSubmit(e)} text="Create Account" />
+            <AppButton
+              onPress={(e: any) => formik.handleSubmit(e)}
+              text="Create Account"
+            />
           </View>
         </View>
-        <View style={styles.alternative}>
-          <View
-            style={{
-              borderTopWidth: 1,
-              borderTopColor: "#D7D7D7",
-              flexGrow: 1,
-            }}
-          ></View>
-          <Text style={{ fontSize: 18, fontWeight: "semibold" }}>Or</Text>
-          <View
-            style={{
-              borderTopWidth: 1,
-              borderTopColor: "#D7D7D7",
-              flexGrow: 1,
-            }}
-          ></View>
-        </View>
-        <Pressable style={styles.withGoogle}>
-          <GoogleSvg />
-          <Text style={{ fontSize: 18, fontWeight: "semibold" }}>
-            Continue With Google
-          </Text>
-        </Pressable>
+        <GoogleLogin />
       </KeyboardAvoidView>
     </View>
   );
@@ -198,6 +146,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
+    paddingTop: hp(5.4),
   },
 
   textView: {
@@ -237,25 +186,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRightWidth: 1,
     borderRightColor: "#7F7F7F",
-  },
-  alternative: {
-    paddingHorizontal: wp(4.27),
-    paddingTop: hp(3.45),
-    paddingBottom: hp(3),
-    flexDirection: "row",
-    columnGap: 5,
-    // justifyContent:'sp'
-    alignItems: "center",
-  },
-  withGoogle: {
-    marginHorizontal: wp(4.27),
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    columnGap: 10,
-    borderWidth: 1,
-    borderColor: "#2D2D2D",
-    borderRadius: 50,
-    paddingVertical: hp(2),
   },
 });

@@ -3,11 +3,12 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { RootParams } from './utils/types'
 import Onboarding from './screens/Onboarding'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import SignUp from './screens/SignUp'
 import EmailVerification from './screens/EmailVerification'
 import SetPin from './screens/SetPin'
 import SetCurrency from './screens/SetCurrency'
+import Login from './screens/Login'
+import Home from './screens/Home'
 
 const stack = createStackNavigator<RootParams>()
 export default function AppRoutes() {
@@ -21,6 +22,8 @@ export default function AppRoutes() {
             <Screen name='emailVerification' component={EmailVerification} />
             <Screen name='setpin' component={SetPin}  />
             <Screen name='setcurrency' component={SetCurrency} />
+            <Screen name='login' component={Login} />
+            <Screen name='home' component={Home} />
         </Navigator>
     </View>
   )
@@ -28,6 +31,6 @@ export default function AppRoutes() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingTop: hp(5.4),
+    // paddingTop: hp(5.4),
   },
 });
