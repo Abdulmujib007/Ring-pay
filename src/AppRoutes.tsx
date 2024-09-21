@@ -5,6 +5,9 @@ import { RootParams } from './utils/types'
 import Onboarding from './screens/Onboarding'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import SignUp from './screens/SignUp'
+import EmailVerification from './screens/EmailVerification'
+import SetPin from './screens/SetPin'
+import SetCurrency from './screens/SetCurrency'
 
 const stack = createStackNavigator<RootParams>()
 export default function AppRoutes() {
@@ -15,6 +18,9 @@ export default function AppRoutes() {
         <Navigator screenOptions={{headerShown:false}} initialRouteName='onboarding'>
             <Screen name="onboarding" component={Onboarding}/>
             <Screen name='sighup' component={SignUp} />
+            <Screen name='emailVerification' component={EmailVerification} />
+            <Screen name='setpin' component={SetPin}  />
+            <Screen name='setcurrency' component={SetCurrency} />
         </Navigator>
     </View>
   )

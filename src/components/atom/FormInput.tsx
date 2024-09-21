@@ -24,7 +24,7 @@ interface FormProps {
     | "twitter"
     | "web-search"
     | "visible-password";
-  onChangeText: () => void;
+  onChangeText: any;
   secureTextEntry?: boolean;
   children?: ReactNode;
 }
