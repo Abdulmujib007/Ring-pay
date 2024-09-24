@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,  } from "react-native";
 import React, { useState } from "react";
 import {
   heightPercentageToDP as hp,
@@ -13,11 +13,13 @@ import BackBtn from "../components/atom/BackBtn";
 import { useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
-import PasswordFormInput from "../components/molecule/PasswordFormInput";
+// import PasswordFormInput from "../components/molecule/PasswordFormInput";
 import { signUpValidationSchema as validationSchema } from "../utils/yupValidationSchema";
+import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
 
 export default function SignUp({ navigation }: any) {
   const [focusColor, setFocusColor] = useState(false);
+ 
 
   const initialValues = {
     firstName: "",
@@ -123,7 +125,11 @@ export default function SignUp({ navigation }: any) {
             </View>
 
             <View>
-              <PasswordFormInput password={formik.handleChange("password")} />
+              <FormInput
+                placeholder="password"
+                onChangeText={formik.handleChange("password")}
+                type="password"
+              />
               {formik.touched.password && formik.errors.password && (
                 <Text style={{ color: "#d73a4a" }}>
                   {formik.errors.password}
@@ -138,6 +144,7 @@ export default function SignUp({ navigation }: any) {
         </View>
         <GoogleLogin />
       </KeyboardAvoidView>
+      <GoogleSignUpModal />
     </View>
   );
 }

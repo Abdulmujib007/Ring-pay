@@ -1,16 +1,23 @@
 {
     "cSpell.words": [
         "anhnch",
+        "Buttom",
         "Formik",
+        "gorhom",
+        "Ionicons",
         "lastmode",
         "mmkv",
+        "Nerdyeye",
         "Passsword",
         "pincode",
         "Pressable",
+        "reduxjs",
         "setcurrency",
         "setpin",
         "signup",
         "SME’s",
         "Verif"
-    ]
+    ],
+    "files.autoSave": "onFocusChange",
+    "files.autoSaveWhenNoErrors": true
 }

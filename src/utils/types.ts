@@ -6,4 +6,12 @@ export type RootParams = {
     setcurrency : undefined;
     login : undefined;
     home : undefined;
+    forgotPassword : undefined;
+    bottomTab : undefined;
+}
+export type BottomTabParams = {
+    Home: undefined;
+    Cards : undefined;
+    Accounts: undefined;
+    Transactions : undefined
 }

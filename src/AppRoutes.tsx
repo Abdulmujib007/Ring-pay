@@ -9,13 +9,14 @@ import SetPin from './screens/SetPin'
 import SetCurrency from './screens/SetCurrency'
 import Login from './screens/Login'
 import Home from './screens/Home'
+import ForgotPassword from './screens/ForgotPassword'
+import BottomTabs from './components/molecule/BottomTabs'
 
 const stack = createStackNavigator<RootParams>()
 export default function AppRoutes() {
     const {Navigator ,Screen} = stack
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={'black'} />
         <Navigator screenOptions={{headerShown:false}} initialRouteName='onboarding'>
             <Screen name="onboarding" component={Onboarding}/>
             <Screen name='sighup' component={SignUp} />
@@ -24,6 +25,8 @@ export default function AppRoutes() {
             <Screen name='setcurrency' component={SetCurrency} />
             <Screen name='login' component={Login} />
             <Screen name='home' component={Home} />
+            <Screen name='forgotPassword' component={ForgotPassword} />
+            <Screen name='bottomTab' component={BottomTabs} />
         </Navigator>
     </View>
   )

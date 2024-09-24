@@ -10,8 +10,8 @@ import AppButton from "../components/atom/AppButton";
 
 export default function EmailVerification({ navigation }: any) {
   const handleSubmit = () => {
-    navigation.navigate('setpin')
-  }
+    navigation.navigate("setpin");
+  };
   return (
     <View style={styles.container}>
       <BackBtn navigation={navigation} />
@@ -19,12 +19,20 @@ export default function EmailVerification({ navigation }: any) {
         <Text style={styles.emailText}>Verify Your Email</Text>
         <Text style={styles.OtpText}>check your email for OTP code</Text>
       </View>
-      <OtpVerification />
+      <View style={{ paddingHorizontal: wp(4.8) }}>
+        <OtpVerification />
+      </View>
       <View style={styles.button}>
         <AppButton text="Continue" onPress={handleSubmit} />
       </View>
       <Text
-        style={{ textAlign: "center", paddingTop: hp(4.43), color: "#3BA638", fontWeight:'semibold',fontSize:18 }}
+        style={{
+          textAlign: "center",
+          paddingTop: hp(4.43),
+          color: "#3BA638",
+          fontWeight: "semibold",
+          fontSize: 18,
+        }}
       >
         Resend Code
       </Text>

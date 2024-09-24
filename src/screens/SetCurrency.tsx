@@ -10,7 +10,7 @@ import { RootParams } from '../utils/types';
 export default function SetCurrency({navigation } :any) {
      
     const  handleSetCurrency = () => {
-      navigation.navigate('login')
+      navigation.navigate('home')
     }
 
   return (

@@ -8,8 +8,9 @@ import FormInput from "../components/atom/FormInput";
 import { useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
-import PasswordFormInput from "../components/molecule/PasswordFormInput";
+// import PasswordFormInput from "../components/molecule/PasswordFormInput";
 import { logInValidationSchema as validationSchema } from "../utils/yupValidationSchema";
+import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
 
 export default function Login({ navigation }: any) {
   const initialValues = {
@@ -18,7 +19,7 @@ export default function Login({ navigation }: any) {
   };
 
   const onSubmit = () => {
-    navigation.navigate('home')
+    navigation.navigate('bottomTab')
   };
   const formik = useFormik({
     initialValues,
@@ -51,16 +52,27 @@ export default function Login({ navigation }: any) {
             )}
           </View>
           <View>
-            <PasswordFormInput password={formik.handleChange("password")} />
+            {/* <PasswordFormInput password={formik.handleChange("password")} /> */}
+            <FormInput
+              placeholder="password"
+              onChangeText={formik.handleChange("password")}
+              type="password"
+            />
             {formik.touched.password && formik.errors.password && (
               <Text style={{ color: "#d73a4a" }}>{formik.errors.password}</Text>
             )}
           </View>
         </View>
-        <Text style={styles.forgetPasssword}>Forget Password?</Text>
+        <Text
+          onPress={() => navigation.navigate("forgotPassword")}
+          style={styles.forgetPasssword}
+        >
+          Forget Password?
+        </Text>
         <AppButton text="Log In" onPress={() => formik.handleSubmit()} />
         <GoogleLogin />
       </View>
+      <GoogleSignUpModal />
     </View>
   );
 }

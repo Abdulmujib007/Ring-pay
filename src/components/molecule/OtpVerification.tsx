@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   root: {
     // flex: 1,
     // padding: 20,
-    paddingHorizontal: wp(4.8),
+    // paddingHorizontal: wp(4.8),
     paddingTop: hp(2.46),
   },
   title: { textAlign: "center", fontSize: 30 },

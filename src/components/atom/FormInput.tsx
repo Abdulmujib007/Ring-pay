@@ -7,6 +7,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import PasswordShowSvg from "./icons/PasswordShowSvg";
+import PasswordHideSvg from "./icons/PasswordHideSvg";
 
 interface FormProps {
   placeholder: string;
@@ -25,18 +27,18 @@ interface FormProps {
     | "web-search"
     | "visible-password";
   onChangeText: any;
-  secureTextEntry?: boolean;
-  children?: ReactNode;
+  type? : 'password'
 }
 
 const FormInput = ({
   keyboardType = "default",
   onChangeText,
   placeholder,
-  secureTextEntry = false,
-  children,
+  type,
 }: FormProps) => {
   const [focusColor, setFocusColor] = useState(false);
+  const [passwordShow, setPasswordShow] = useState(true);
+
   return (
     <View
       style={[
@@ -48,16 +50,24 @@ const FormInput = ({
       ]}
     >
       <TextInput
-        
         onFocus={() => setFocusColor(true)}
         onBlur={() => setFocusColor(false)}
         style={styles.textInput}
         placeholder={placeholder}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={type === 'password' ? passwordShow : false}
       />
-      {children}
+      {type === "password" && (
+        <View>
+          {passwordShow && (
+            <PasswordShowSvg onPress={() => setPasswordShow(prev => !prev)} />
+          )}
+          {!passwordShow && (
+            <PasswordHideSvg onPress={() => setPasswordShow(prev => !prev)} />
+          )}
+        </View>
+      )}
     </View>
   );
 };

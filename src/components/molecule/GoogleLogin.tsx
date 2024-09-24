@@ -2,8 +2,19 @@ import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import GoogleSvg from '../atom/icons/GoogleSvg'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { useDispatch,  } from 'react-redux'
+import { toggle1 } from '../../utils/modalSlice'
 
 export default function GoogleLogin() {
+
+  const dispatch = useDispatch()
+  // const handleModalShow = () => {
+  //   if(toggle == 'toggle1' ){
+  //     dispatch(toggle1(true))
+  //   } else {
+  //     dispatch(toggle2(true))
+  //   }
+  // }
   return (
      <>
      <View style={styles.alternative}>
@@ -22,7 +33,8 @@ export default function GoogleLogin() {
                   flexGrow: 1,
               }}
           ></View>
-      </View><Pressable style={styles.withGoogle}>
+      </View>
+      <Pressable onPress={() => dispatch(toggle1(true))} style={styles.withGoogle}>
               <GoogleSvg />
               <Text style={{ fontSize: 18, fontWeight: "semibold" }}>
                   Continue With Google
