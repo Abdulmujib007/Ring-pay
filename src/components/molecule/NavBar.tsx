@@ -4,11 +4,16 @@ import DrawerSvg from '../atom/icons/DrawerSvg';
 import NotificationSvg from '../atom/icons/NotificationSvg';
 import RingPaySvg from '../atom/icons/RingPaySvg';
 import { heightPercentageToDP as hp,widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { DrawerActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+
+
 
 const NavBar = () => {
+  const navigation = useNavigation()
   return (
     <View style={styles.homeBar}>
-      <Pressable>
+      <Pressable onPress={() => navigation.dispatch(DrawerActions.openDrawer())} >
         <DrawerSvg />
       </Pressable>
       <View style={{ flexDirection: "row", columnGap: wp(2.13) }}>

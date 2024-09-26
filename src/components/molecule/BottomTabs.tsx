@@ -11,6 +11,7 @@ import { BottomTabParams } from "../../utils/types";
 import Cards from "../../screens/Cards";
 import Accounts from "../../screens/Accounts";
 import Transactions from "../../screens/Transactions";
+import DrawerTabs from "./DrawerTabs";
 
 const Tab = createBottomTabNavigator<BottomTabParams>();
 const BottomTabs = () => {
@@ -27,6 +28,7 @@ const BottomTabs = () => {
         
       }}
     >
+      {/* <Screen name="drawerTab" component={DrawerTabs}  /> */}
       <Screen
         name="Home"
         component={Home}

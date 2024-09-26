@@ -19,7 +19,7 @@ export default function Login({ navigation }: any) {
   };
 
   const onSubmit = () => {
-    navigation.navigate('bottomTab')
+    navigation.replace('drawerTab')
   };
   const formik = useFormik({
     initialValues,

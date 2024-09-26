@@ -11,6 +11,7 @@ import Login from './screens/Login'
 import Home from './screens/Home'
 import ForgotPassword from './screens/ForgotPassword'
 import BottomTabs from './components/molecule/BottomTabs'
+import DrawerTabs from './components/molecule/DrawerTabs'
 
 const stack = createStackNavigator<RootParams>()
 export default function AppRoutes() {
@@ -24,9 +25,10 @@ export default function AppRoutes() {
             <Screen name='setpin' component={SetPin}  />
             <Screen name='setcurrency' component={SetCurrency} />
             <Screen name='login' component={Login} />
-            <Screen name='home' component={Home} />
+            {/* <Screen name='home' component={Home} /> */}
             <Screen name='forgotPassword' component={ForgotPassword} />
-            <Screen name='bottomTab' component={BottomTabs} />
+            {/* <Screen name='bottomTab' component={BottomTabs} /> */}
+            <Screen name='drawerTab' component={DrawerTabs} />
         </Navigator>
     </View>
   )

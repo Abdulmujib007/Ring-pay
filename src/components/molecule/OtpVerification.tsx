@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, Text, StyleSheet, Platform, View } from "react-native";
+import { Text, StyleSheet, Platform, View } from "react-native";
 import {
   CodeField,
   Cursor,

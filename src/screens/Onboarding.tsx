@@ -26,7 +26,7 @@ export default function Onboarding({ navigation }: any) {
           <AppButton text={"Create Account"} onPress={handleSighup} />
         </View>
       </View>
-        <Text onPress={() => navigation.navigate('login')} style={styles.login}>Already have an Account? Login</Text>
+        <Text onPress={() => navigation.replace('login')} style={styles.login}>Already have an Account? Login</Text>
     </View>
   );
 }
