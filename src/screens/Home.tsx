@@ -25,7 +25,7 @@ export default function Home({navigation}: any) {
         style={styles.absoluteImg}
         source={require("../assets/balance.png")}
       />
-      <NavBar  />
+      <NavBar svgColor="White" />
       <ScrollView showsVerticalScrollIndicator={false} >
         <View
           style={{
