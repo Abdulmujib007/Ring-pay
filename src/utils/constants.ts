@@ -60,3 +60,61 @@ export const transactionData : TransactionProps[] = [
         time:'10mins ago'
     }
 ]
+
+interface PropParams {
+    lastFourDigits:number;
+    image : ImageSourcePropType;
+    balance:number;
+    expiryDate:string;
+    cvv:number;
+    cardName:string;
+    id:number
+}
+
+export const CardData : PropParams[] = [
+    {
+        image: require('../assets/debit-cards1.png'),
+        balance:250.03,
+        cardName:'John Doe',
+        cvv:143,
+        expiryDate:'11/25',
+        lastFourDigits:4589,
+        id:0
+    },
+     {
+        image: require('../assets/debit-cards2.png'),
+        balance:150.00,
+        cardName:'Mujib Doe',
+        cvv:123,
+        expiryDate:'11/27',
+        lastFourDigits:7678,
+        id:1
+    },
+     {
+        image: require('../assets/debit-cards3.png'),
+        balance:500.00,
+        cardName:'John Mujib',
+        cvv:812,
+        expiryDate:'12/24',
+        lastFourDigits:1234,
+        id:2
+    },
+     {
+        image: require('../assets/debit-cards4.png'),
+        balance:1000,
+        cardName:'Abdul Mujib',
+        cvv:143,
+        expiryDate:'05/24',
+        lastFourDigits:9876,
+        id:3
+    },
+     {
+        image: require('../assets/debit-cards5.png'),
+        balance:10.00,
+        cardName:'Dumb Ass',
+        cvv:419,
+        expiryDate:'01/60',
+        lastFourDigits:4191,
+        id:4
+    }
+]

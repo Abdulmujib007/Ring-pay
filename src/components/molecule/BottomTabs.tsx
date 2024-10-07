@@ -12,6 +12,7 @@ import Cards from "../../screens/Cards";
 import Accounts from "../../screens/Accounts";
 import Transactions from "../../screens/Transactions";
 import DrawerTabs from "./DrawerTabs";
+import CardTabs from "./CardTabs";
 
 const Tab = createBottomTabNavigator<BottomTabParams>();
 const BottomTabs = () => {
@@ -41,7 +42,7 @@ const BottomTabs = () => {
       />
       <Screen
         name="Cards"
-        component={Cards}
+        component={CardTabs}
         options={{
           tabBarIcon: ({ color }) => {
             return <Ionicons name="card" size={24} color={color} />;

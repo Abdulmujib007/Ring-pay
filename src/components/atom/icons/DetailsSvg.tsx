@@ -1,9 +1,9 @@
 import * as React from "react";
 import Svg, { SvgProps, Path } from "react-native-svg";
-const ArrowDownSvg = (props: SvgProps) => (
+const DetailsSvg = (props: SvgProps) => (
   <Svg
-    width={13}
-    height={10}
+    width={24}
+    height={24}
     fill="none"
     {...props}
   >
@@ -12,8 +12,8 @@ const ArrowDownSvg = (props: SvgProps) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="m11.666 1.5-5 5-5-5"
+      d="M8.5 16.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
     />
   </Svg>
 );
-export default ArrowDownSvg;
+export default DetailsSvg;

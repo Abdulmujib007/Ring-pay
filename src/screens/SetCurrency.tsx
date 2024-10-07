@@ -1,16 +1,15 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native'
-import React from 'react'
-import BackBtn from '../components/atom/BackBtn'
-import { heightPercentageToDP as hp,widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { View, Text, StyleSheet, TextInput } from 'react-native';
+import React from 'react';
+import BackBtn from '../components/atom/BackBtn';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import NigeriaFlagSvg from '../components/atom/icons/NigeriaFlagSvg';
 import ArrowDownSvg from '../components/atom/icons/ArrowDownSvg';
 import AppButton from '../components/atom/AppButton';
-import { RootParams } from '../utils/types';
 
 export default function SetCurrency({navigation } :any) {
      
     const  handleSetCurrency = () => {
-      navigation.navigate('home')
+      navigation.replace('drawerTab')
     }
 
   return (
@@ -75,6 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 50,
     alignItems: "center",
+    justifyContent:'center',
     columnGap: 5,
   },
   button: {
