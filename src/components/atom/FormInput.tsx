@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     paddingVertical: hp(2.03),
     paddingHorizontal: wp(4.26),
     backgroundColor: "#F5F5F5",
-    borderRadius: 50,
+    borderRadius: 30,
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",

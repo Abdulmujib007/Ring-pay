@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { SvgProps, Path } from "react-native-svg";
-const DetailsSvg = (props: SvgProps) => (
+const MoreSvg = (props: SvgProps) => (
   <Svg
     width={18}
     height={18}
@@ -12,8 +12,8 @@ const DetailsSvg = (props: SvgProps) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M9.5 16.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15ZM9.5 12V9M9.5 6h.008"
+      d="M9.5 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM9.5 9.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM9.5 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
     />
   </Svg>
 );
-export default DetailsSvg;
+export default MoreSvg;

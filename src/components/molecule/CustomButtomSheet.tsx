@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import React, { forwardRef, ReactNode, useMemo } from 'react'
 import BottomSheet from '@gorhom/bottom-sheet'
 

@@ -17,7 +17,7 @@ export const quickAccessData = [
 
 interface TransactionProps {
   time: string;
-  method: "Payroll" | "Expenses" | "Fund Wallet" | "Receive Fund";
+  method: "Payroll" | "Expenses" | "Fund Wallet" | "Receive Fund" | 'Online Transaction' | 'Facebook Ads' | 'Add Funds' ;
   amount: string;
   image: ImageSourcePropType;
   amountColor: "#F04343" | "#41B63E";
@@ -116,5 +116,28 @@ export const CardData : PropParams[] = [
         expiryDate:'01/60',
         lastFourDigits:4191,
         id:4
+    }
+]
+export const singleCardTransactionData : TransactionProps[] = [
+    {
+        amount:'$7,200',
+        amountColor:"#F04343",
+        method :"Online Transaction",
+        image:require('../assets/icon (1).png'),
+        time:'2mins ago'
+    },
+    {
+        amount:'$910',
+        amountColor:"#F04343",
+        method :"Facebook Ads",
+        image:require('../assets/icon (2).png'),
+        time:'10mins ago'
+    },
+     {
+        amount:'$350',
+        amountColor:"#41B63E",
+        method :"Add Funds",
+        image:require('../assets/icon (4).png'),
+        time:'10mins ago'
     }
 ]

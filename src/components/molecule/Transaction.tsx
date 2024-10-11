@@ -4,7 +4,7 @@ import { heightPercentageToDP as hp,widthPercentageToDP as wp } from 'react-nati
 
 interface TransactionProps {
   time: string;
-  method: "Payroll" | "Expenses" | "Fund Wallet" | "Receive Fund";
+  method: "Payroll" | "Expenses" | "Fund Wallet" | "Receive Fund" | 'Online Transaction' | 'Facebook Ads' | 'Add Funds';
   amount: string;
   image: ImageSourcePropType;
   amountColor: "#F04343" | "#41B63E";
