@@ -17,14 +17,16 @@ import { ScrollView } from "react-native-gesture-handler";
 import { singleCardTransactionData } from "../utils/constants";
 import Transaction from "../components/molecule/Transaction";
 import BottomSheet from "@gorhom/bottom-sheet";
+import CopyTextSvg from "../components/atom/icons/CopyTextSvg";
+import CardDetails from "../components/atom/CardDetails";
 
 const SIngleCardPage = ({ navigation }: any) => {
   const cardData = useSelector((state: any) => state.cardToShow);
 
   const bottomSheetRef = useRef<BottomSheet>(null);
   const handleCardDetails = () => {
-    bottomSheetRef.current?.expand()
-  }
+    bottomSheetRef.current?.expand();
+  };
 
   return (
     <View style={styles.container}>
@@ -76,7 +78,7 @@ const SIngleCardPage = ({ navigation }: any) => {
       </ScrollView>
       <BottomSheet
         index={0}
-        snapPoints={["1", "50%"]}
+        snapPoints={["1", "56%"]}
         enablePanDownToClose
         ref={bottomSheetRef}
         style={{
@@ -87,8 +89,31 @@ const SIngleCardPage = ({ navigation }: any) => {
         }}
         handleIndicatorStyle={{ width: 73, backgroundColor: "#D7D7D7" }}
       >
-        <View>
-          <Text>Mujib</Text>
+        <View
+          style={{
+            marginTop:hp(1),
+            marginHorizontal: wp(5.33),
+            rowGap: hp(4),
+          }}
+        >
+          <CardDetails header="Card Name" text="John Doe" />
+          <CardDetails header="Number" text="5678 8987 7654 8987" />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <CardDetails header="CVV" text="098" width={37.33} />
+            <CardDetails header="Expiry" text="07/27" width={37.33} />
+          </View>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <CardDetails header="Pin" text="----" width={37.33} />
+            <CardDetails header="Zip Code" text="101212" width={37.33} />
+          </View>
+          <CardDetails
+            header="Billing Address"
+            text="25 philips street, new jersey"
+          />
         </View>
       </BottomSheet>
     </View>
