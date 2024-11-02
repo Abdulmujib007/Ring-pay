@@ -1,5 +1,5 @@
 // import { TextInput,View,StyleSheet } from 'react-native'
-import React, { ReactNode, useState } from "react";
+import React, { Children, ReactNode, useState } from "react";
 
 import { StyleSheet, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
@@ -27,7 +27,8 @@ interface FormProps {
     | "web-search"
     | "visible-password";
   onChangeText: any;
-  type? : 'password'
+  type? : 'password';
+  children?: ReactNode
 }
 
 const FormInput = ({
@@ -35,6 +36,7 @@ const FormInput = ({
   onChangeText,
   placeholder,
   type,
+  children 
 }: FormProps) => {
   const [focusColor, setFocusColor] = useState(false);
   const [passwordShow, setPasswordShow] = useState(true);
@@ -67,7 +69,9 @@ const FormInput = ({
             <PasswordHideSvg onPress={() => setPasswordShow(prev => !prev)} />
           )}
         </View>
+        
       )}
+      {children}
     </View>
   );
 };
@@ -80,7 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignContent: "center",
+    alignItems: "center",
   },
   textInput: {
     fontWeight: "semibold",

@@ -4,7 +4,7 @@ import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-nat
 
 export default function BackBtn({navigation,text,columnGap}: {navigation : any,text? : string,columnGap ?: number}) {
   return (
-    <View style={styles.backLogo}>
+    <View style={[styles.backLogo,{columnGap: columnGap ? wp(columnGap) : wp(36) }]}>
       <Pressable onPress={() => navigation.goBack()}>
         <BackSvg />
       </Pressable>
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     paddingLeft: wp(6.67),
     flexDirection:'row',
     columnGap:wp(36),
-    alignItems:'flex-start',
+    alignItems:'center',
+    // justifyContent:"center"
   },
 });

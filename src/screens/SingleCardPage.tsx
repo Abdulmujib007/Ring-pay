@@ -40,6 +40,7 @@ const SIngleCardPage = ({ navigation }: any) => {
           image={cardData.image}
           lastFourDigits={cardData.lastFourDigits}
           index={cardData.id}
+          key={cardData.id}
         />
         <View style={{ alignItems: "center" }}>
           <Image source={require("../assets/Ellipse 9.png")} />
@@ -49,10 +50,12 @@ const SIngleCardPage = ({ navigation }: any) => {
         <Pressable onPress={handleCardDetails}>
           <EditCard svg={<DetailsSvg />} text="Details" />
         </Pressable>
-        <EditCard
-          text="Add Card"
-          svg={<FontAwesome6 name="plus" size={18} color="black" />}
-        />
+        <Pressable onPress={() => navigation.navigate('fundCard')}>
+          <EditCard
+            text="Add Fund"
+            svg={<FontAwesome6 name="plus" size={18} color="black" />}
+          />
+        </Pressable>
         <EditCard text="Freeze" svg={<FreezeSvg />} />
         <EditCard text="More" svg={<MoreSvg />} />
       </View>
@@ -91,7 +94,7 @@ const SIngleCardPage = ({ navigation }: any) => {
       >
         <View
           style={{
-            marginTop:hp(1),
+            marginTop: hp(1),
             marginHorizontal: wp(5.33),
             rowGap: hp(4),
           }}
