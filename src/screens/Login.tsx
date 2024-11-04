@@ -8,9 +8,9 @@ import FormInput from "../components/atom/FormInput";
 import { useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
-// import PasswordFormInput from "../components/molecule/PasswordFormInput";
 import { logInValidationSchema as validationSchema } from "../utils/yupValidationSchema";
 import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
+import { getUser } from "../../helper";
 
 export default function Login({ navigation }: any) {
   const initialValues = {
@@ -18,9 +18,23 @@ export default function Login({ navigation }: any) {
     password: "",
   };
 
-  const onSubmit = () => {
-    navigation.replace('drawerTab')
+  const onSubmit = async () => {
+
+    try{
+      const data = await getUser({
+        email: "efeethr@gmail.com",
+        password: "12345678Ds",
+      });
+      navigation.replace("drawerTab");
+      console.log(data);
+    }
+    catch(exception){
+        console.log(exception)
+    }
   };
+
+
+
   const formik = useFormik({
     initialValues,
     validationSchema,
