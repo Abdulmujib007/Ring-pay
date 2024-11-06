@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "../../../store";
 import { StatusBar } from "expo-status-bar";
 import { Platform } from "react-native";
+import Toast from "react-native-toast-message";
 
 export default function AppManager({ children }: { children: ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export default function AppManager({ children }: { children: ReactNode }) {
         <StatusBar backgroundColor= {Platform.OS === 'ios' ? 'black' : 'white' } />
         {children}
       </NavigationContainer>
+      {/* <Toast/> */}
     </Provider>
   );
 }

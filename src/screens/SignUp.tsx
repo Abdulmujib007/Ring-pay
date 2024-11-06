@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet,  } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import {
   heightPercentageToDP as hp,
@@ -10,16 +10,16 @@ import { TextInput } from "react-native-gesture-handler";
 import CountrySvg from "../components/atom/icons/CountrySvg";
 import ArrowDownSvg from "../components/atom/icons/ArrowDownSvg";
 import BackBtn from "../components/atom/BackBtn";
-import { useFormik } from "formik";
+import { FormikValues, useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
 // import PasswordFormInput from "../components/molecule/PasswordFormInput";
 import { signUpValidationSchema as validationSchema } from "../utils/yupValidationSchema";
 import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
+import { addUser } from "../../helper";
 
 export default function SignUp({ navigation }: any) {
   const [focusColor, setFocusColor] = useState(false);
- 
 
   const initialValues = {
     firstName: "",
@@ -29,8 +29,25 @@ export default function SignUp({ navigation }: any) {
     password: "",
   };
 
-  const onSubmit = () => {
-    navigation.navigate("emailVerification");
+  const onSubmit = async (values: FormikValues) => {
+    console.log(
+      values.firstName,
+      values.lastName,
+      values.email,
+      values.password
+    );
+    try {
+      const newUser = await addUser({
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        password: values.password,
+      });
+      console.log(newUser);
+      navigation.navigate("emailVerification");
+    } catch (exception) {
+      console.log(exception);
+    }
   };
 
   const formik = useFormik({

@@ -5,12 +5,13 @@ import {
 } from "react-native-responsive-screen";
 import BackBtn from "../components/atom/BackBtn";
 import FormInput from "../components/atom/FormInput";
-import { useFormik } from "formik";
+import { FormikFormProps, FormikValues, useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
 import { logInValidationSchema as validationSchema } from "../utils/yupValidationSchema";
 import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
 import { getUser } from "../../helper";
+import Toast from "react-native-toast-message";
 
 export default function Login({ navigation }: any) {
   const initialValues = {
@@ -18,18 +19,25 @@ export default function Login({ navigation }: any) {
     password: "",
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (values : FormikValues) => {
 
     try{
       const data = await getUser({
-        email: "efeethr@gmail.com",
-        password: "12345678Ds",
+        email: values.email,
+        password: values.password,
       });
       navigation.replace("drawerTab");
       console.log(data);
     }
-    catch(exception){
-        console.log(exception)
+    catch(exception : any){
+        console.log(exception.message)
+        Toast.show({
+          type:'error',
+          text1:'Invalid Email or Password',
+          text2:'Pls try again!',
+          visibilityTime:5000,
+
+        })
     }
   };
 
