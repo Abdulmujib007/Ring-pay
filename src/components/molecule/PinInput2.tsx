@@ -8,10 +8,10 @@ import {
 } from "react-native-responsive-screen";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
-const PinInput2 = () => {
+const PinInput2 = ({pinType} : {pinType:'Enter' | 'Set'}) => {
   //   const mmkv = useMMKV();
   const [pin, setPin] = useState("");
-  const [pinMode, setPinMode] = useState(PinCodeT.Modes.Set);
+  const [pinMode, setPinMode] = useState(pinType === 'Enter' ? PinCodeT.Modes.Enter : PinCodeT.Modes.Set);
   const [pinVisible, setPinVisible] = useState(true);
 
   const Set: PinCodeT.EnterSetStyles = {
@@ -21,7 +21,8 @@ const PinInput2 = () => {
     },
     // pin:{
     //   backgroundColor : 'green'
-    // },
+    // },      {/* <Text>EnterPin</Text> */}
+
     // enteredPin : {
     //     height: 70
     // },
@@ -76,9 +77,8 @@ const PinInput2 = () => {
       margin: 0,
       // backgroundColor : 'red',
       // columnGap :0,
-      // rowGap:0
-    }, 
-    
+      // rowGap:      {/* <Text>EnterPin</Text> */}
+    },
   };
   const customStyles: PinCodeT.PinCodeStyles = {
     main: {
@@ -97,24 +97,25 @@ const PinInput2 = () => {
     },
     enter: {
       ...Set,
-      
+
       // header:{
       //   display:'none',
       //   padding: 0
       // },
       // title: {
-      //   // display: 'none',
-      // },
+      //   // display: 'none',      {/* <Text>EnterPin</Text> */}
+
+      // },      {/* <Text>EnterPin</Text> */}
+
       // subTitle:{
       //   display: 'none',
       // },
-      // pin: { backgroundColor: "#D1D5D7" },
+      // pin: { backgroundColor: "# " },
       // enteredPin: { backgroundColor: "#4DC2C1" },
       // footerText: { color: "#000" },
       // errorText: { color: "#CA0F3A",
       // },
     },
-  
   };
 
   return (
@@ -122,6 +123,7 @@ const PinInput2 = () => {
       <PinCode
         textOptions={{
           set: { cancel: undefined, repeat: "Pls enter the pin again" },
+          enter:{title:"Enter your transaction pin"}
         }}
         options={{
           maxAttempt: 4,

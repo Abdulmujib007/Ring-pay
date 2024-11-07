@@ -53,7 +53,7 @@ const FundCard = ({ navigation }: any) => {
           />
        
         </View>
-        <AppButton text="Continue"  />
+        <AppButton text="Continue" onPress={() => navigation.navigate('enterPin')} />
       </View>
     </View>
   );

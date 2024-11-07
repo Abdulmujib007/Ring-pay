@@ -21,7 +21,7 @@ export default function SetPin({navigation} : any) {
         keep it safe.
       </Text>
       {/* <View style={{flex: 1}} >  */}
-      <PinInput2/>
+      <PinInput2 pinType='Set'/>
       {/* </View> */}
       <View style={{paddingHorizontal:wp(4.26)}}>
       <AppButton text='Set pin' onPress={handleSetPin}/>

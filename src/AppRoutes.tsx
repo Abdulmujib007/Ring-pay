@@ -17,7 +17,7 @@ export default function AppRoutes() {
     const {Navigator ,Screen} = stack
   return (
     <View style={styles.container}>
-        <Navigator screenOptions={{headerShown:false}} initialRouteName='onboarding'>
+        <Navigator screenOptions={{headerShown:false}} initialRouteName='setpin'>
             <Screen name="onboarding" component={Onboarding}/>
             <Screen name='sighup' component={SignUp} />
             <Screen name='emailVerification' component={EmailVerification} />
