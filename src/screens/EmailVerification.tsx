@@ -20,7 +20,7 @@ export default function EmailVerification({ navigation }: any) {
         <Text style={styles.OtpText}>check your email for OTP code</Text>
       </View>
       <View style={{ paddingHorizontal: wp(4.8) }}>
-        <OtpVerification />
+        <OtpVerification count={6} />
       </View>
       <View style={styles.button}>
         <AppButton text="Continue" onPress={handleSubmit} />

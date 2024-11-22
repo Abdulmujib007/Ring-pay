@@ -31,12 +31,7 @@ interface PropParams {
 
 const   CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardName,navigation, } : PropParams ) => {
 
-    // const dispatch = useDispatch()
-    // const handlePress = () => {
-    //     dispatch(cardToShow(CardData[index]))
-    //     navigation.navigate('singlecard')
-    // }
-
+  
   return (
     // <Pressable  onPress={handlePress} >
       <ImageBackground

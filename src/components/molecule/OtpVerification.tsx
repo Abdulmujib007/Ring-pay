@@ -38,9 +38,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const CELL_COUNT = 6;
 
-const OtpVerification = () => {
+const OtpVerification = ({count}:{count : 4 | 6}) => {
+
+  const CELL_COUNT = count;
   const [value, setValue] = useState("");
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({

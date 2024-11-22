@@ -37,7 +37,7 @@ export default function ForgotPassword({ navigation }: { navigation: any }) {
               style={{ color: "#25B14F" }}
             >
               {" "}
-              Log in here
+             Log in here
             </Text>
           </Text>
         </View>
@@ -56,7 +56,7 @@ export default function ForgotPassword({ navigation }: { navigation: any }) {
               <Text style={{ fontSize: 16, color: "#7F7F7F" }}>
                 Check your email for password reset OTP code
               </Text>
-              <OtpVerification />
+              <OtpVerification  count={6}/>
               <View style={{ paddingTop: hp(2.46), paddingBottom: hp(4.43) }}>
                 <AppButton text="Continue" onPress={() => setShowOtp(false)} />
               </View>
@@ -75,10 +75,25 @@ export default function ForgotPassword({ navigation }: { navigation: any }) {
           {!showOtp && (
             <View style={{ paddingHorizontal: wp(4.27) }}>
               <Text style={styles.bottomSheetOtpText}>Set New Password</Text>
-              <Text style={{ fontSize: 16, color: "#7F7F7F",paddingBottom:hp(2.46) }} >Enter your new password below.</Text>
-              <FormInput placeholder="Password" type="password" onChangeText={handleResetPassword} />
-              <View style={{paddingTop:hp(2.46)}}>
-                <AppButton onPress={() => navigation.navigate('login')}  text="Submit" />
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#7F7F7F",
+                  paddingBottom: hp(2.46),
+                }}
+              >
+                Enter your new password below.
+              </Text>
+              <FormInput
+                placeholder="Password"
+                type="password"
+                onChangeText={handleResetPassword}
+              />
+              <View style={{ paddingTop: hp(2.46) }}>
+                <AppButton
+                  onPress={() => navigation.navigate("login")}
+                  text="Submit"
+                />
               </View>
             </View>
           )}

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const CustomButtomSheet = forwardRef<Ref,Props>((props,ref) => {
-            const snapPoint = useMemo(() => [ '75%'],[])
+            const snapPoint = useMemo(() => [ '80%'],[])
   return (
         <BottomSheet
         // waitFor={}

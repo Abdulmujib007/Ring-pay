@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable, Modal } from "react-native";
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import CardTemplate from "../components/molecule/CardTemplate";
@@ -18,13 +18,21 @@ import { singleCardTransactionData } from "../utils/constants";
 import Transaction from "../components/molecule/Transaction";
 import BottomSheet from "@gorhom/bottom-sheet";
 import CardDetails from "../components/atom/CardDetails";
+// import { G } from "react-native-svg";
 
 const SIngleCardPage = ({ navigation }: any) => {
   const cardData = useSelector((state: any) => state.cardToShow);
   const [showMore, setShowMore] = useState(false);
+  const [modalVisibility, setModalVisibility] = useState(false);
+
   const bottomSheetRef = useRef<BottomSheet>(null);
   const handleCardDetails = () => {
     bottomSheetRef.current?.expand();
+  };
+
+  const handleCardDelete = () => {
+    setModalVisibility(false);
+    navigation.navigate("card");
   };
 
   return (
@@ -49,25 +57,41 @@ const SIngleCardPage = ({ navigation }: any) => {
         </View>
       </View>
       <View style={styles.editCard}>
-        <Pressable style={{width:wp(15)}} onPress={handleCardDetails}>
+        <Pressable style={{ width: wp(15) }} onPress={handleCardDetails}>
           <EditCard svg={<DetailsSvg />} text="Details" />
         </Pressable>
-        <Pressable style={{width:wp(15)}} onPress={() => navigation.navigate("fundCard")}>
+        <Pressable
+          style={{ width: wp(15) }}
+          onPress={() => navigation.navigate("fundCard")}
+        >
           <EditCard
             text="Add Fund"
             svg={<FontAwesome6 name="plus" size={18} color="black" />}
           />
         </Pressable>
         <EditCard text="Freeze" svg={<FreezeSvg />} />
-        <View style={{ height: hp(6.5),width:wp(21) }}>
+        <View style={{ height: hp(6.5), width: wp(21) }}>
           <Pressable onPress={() => setShowMore((prevValue) => !prevValue)}>
             <EditCard text="More" svg={<MoreSvg />} />
           </Pressable>
           {showMore && (
-            <View style={{rowGap:hp(1),alignItems:'center', paddingTop:5,width:'auto'}}>
-              <Text style={{ fontSize: 12 }}>Delete Card</Text>
-              <Text style={{ fontSize: 12 }}>Withdraw Fund</Text>
-              <Text style={{ fontSize: 12 }}>Change Pin</Text>
+            <View
+              style={{
+                rowGap: hp(1),
+                alignItems: "center",
+                paddingTop: 5,
+                width: "auto",
+              }}
+            >
+              <Text
+                onPress={() => setModalVisibility((prev) => !prev)}
+                style={{ fontSize: 12 }}
+              >
+                Delete Card
+              </Text>
+              <Text onPress={() => navigation.navigate('withdrawal')} style={{ fontSize: 12 }}>Withdraw Fund</Text>
+              <Text onPress={() => navigation.navigate('changePin')} style={{ fontSize: 12 }}>Change Pin</Text>
+              
             </View>
           )}
         </View>
@@ -132,6 +156,88 @@ const SIngleCardPage = ({ navigation }: any) => {
           />
         </View>
       </BottomSheet>
+      <Modal visible={modalVisibility}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#F9F9F9",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#fff",
+              paddingHorizontal: wp(5.33),
+              paddingVertical: hp(2.46),
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 40,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 26,
+                fontWeight: "bold",
+                color: "#2D2D2D",
+                marginBottom: hp(1),
+              }}
+            >
+              Confirm Delete
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+                width: wp(66),
+                textAlign: "center",
+                color: "#7F7F7F",
+              }}
+            >
+              Are you sure you want to Delete card?
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "80%",
+                paddingTop: hp(2.46),
+              }}
+            >
+              <Pressable
+                style={{
+                  paddingHorizontal: wp(9),
+                  paddingVertical: hp(1.97),
+                  backgroundColor: "#41B63E",
+                  borderRadius: 50,
+                }}
+                onPress={() => setModalVisibility(false)}
+              >
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "semibold",
+                    color: "#fff",
+                  }}
+                >
+                  Cancel
+                </Text>
+              </Pressable>
+              <Pressable
+                style={{
+                  paddingHorizontal: wp(12.5),
+                  paddingVertical: hp(1.97),
+                  borderColor: "#3BA638",
+                  borderWidth: 1,
+                  borderRadius: 50,
+                }}
+                onPress={handleCardDelete}
+              >
+                <Text style={{ color: "#3BA638",fontSize:18,fontWeight:'semibold' }}>Yes</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -148,25 +254,20 @@ const styles = StyleSheet.create({
     marginTop: hp(1.97),
     paddingHorizontal: wp(4.27),
     rowGap: hp(2.46),
-    // justifyContent:'center'
   },
   editCard: {
     marginTop: hp(2.46),
-    // marginLeft: wp(13),
-    columnGap:wp(6.4),
-    // marginRight: wp(18.4),
+    columnGap: wp(6.4),
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    // backgroundColor: "#D9D9D9",
-    // borderRadius: 0,
     shadowColor: "#D9D9D9",
     shadowOffset: { height: 10, width: 30 },
     shadowOpacity: 1,
     shadowRadius: 15,
   },
   transactionView: {
-    marginTop: hp(5),
+    marginTop: hp(7),
     marginHorizontal: wp(4.26),
     flexDirection: "row",
     justifyContent: "space-between",
