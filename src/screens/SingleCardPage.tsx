@@ -17,7 +17,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import { singleCardTransactionData } from "../utils/constants";
 import Transaction from "../components/molecule/Transaction";
 import BottomSheet from "@gorhom/bottom-sheet";
-import CopyTextSvg from "../components/atom/icons/CopyTextSvg";
 import CardDetails from "../components/atom/CardDetails";
 
 const SIngleCardPage = ({ navigation }: any) => {
@@ -50,22 +49,22 @@ const SIngleCardPage = ({ navigation }: any) => {
         </View>
       </View>
       <View style={styles.editCard}>
-        <Pressable onPress={handleCardDetails}>
+        <Pressable style={{width:wp(15)}} onPress={handleCardDetails}>
           <EditCard svg={<DetailsSvg />} text="Details" />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate("fundCard")}>
+        <Pressable style={{width:wp(15)}} onPress={() => navigation.navigate("fundCard")}>
           <EditCard
             text="Add Fund"
             svg={<FontAwesome6 name="plus" size={18} color="black" />}
           />
         </Pressable>
         <EditCard text="Freeze" svg={<FreezeSvg />} />
-        <View style={{ height: hp(6.5) }}>
+        <View style={{ height: hp(6.5),width:wp(21) }}>
           <Pressable onPress={() => setShowMore((prevValue) => !prevValue)}>
             <EditCard text="More" svg={<MoreSvg />} />
           </Pressable>
           {showMore && (
-            <View style={{}}>
+            <View style={{rowGap:hp(1),alignItems:'center', paddingTop:5,width:'auto'}}>
               <Text style={{ fontSize: 12 }}>Delete Card</Text>
               <Text style={{ fontSize: 12 }}>Withdraw Fund</Text>
               <Text style={{ fontSize: 12 }}>Change Pin</Text>

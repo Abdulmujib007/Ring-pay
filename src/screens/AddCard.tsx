@@ -81,8 +81,6 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    // marginTop: hp(5),
-    // marginHorizontal: wp(4.27),
     paddingHorizontal: wp(4.27),
     flexDirection: "row",
     justifyContent: "space-between",

@@ -1,19 +1,30 @@
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
-import React from 'react'
-import { heightPercentageToDP as hp,widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import NavBar from '../components/molecule/NavBar'
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import React from "react";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
+import NavBar from "../components/molecule/NavBar";
 // import BritainFlagSvg from '../components/atom/icons/BritainFlagSvg'
-import ArrowDownSvg from '../components/atom/icons/ArrowDownSvg'
-import CardTemplate from '../components/molecule/CardTemplate'
-import { ScrollView } from 'react-native-gesture-handler'
-import { CardData } from '../utils/constants'
-import AddSvg from '../components/atom/icons/AddSvg'
-import FundCard from './FundCard'
+import ArrowDownSvg from "../components/atom/icons/ArrowDownSvg";
+import CardTemplate from "../components/molecule/CardTemplate";
+import { ScrollView } from "react-native-gesture-handler";
+import { CardData } from "../utils/constants";
+import AddSvg from "../components/atom/icons/AddSvg";
+import { useDispatch } from "react-redux";
+import { cardToShow } from "../utils/singleCardPageSlice";
 
-const Cards = ({navigation} : any) => {
+const Cards = ({ navigation }: any) => {
+
+    const dispatch = useDispatch();
+    const handlePress = (id:number) => {
+      dispatch(cardToShow(CardData[id]));
+      navigation.navigate("singlecard");
+    };
+
   return (
     <View style={styles.container}>
-        <NavBar svgColor="Dark" />
+      <NavBar svgColor="Dark" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.headerText}>
           <View>
@@ -39,22 +50,43 @@ const Cards = ({navigation} : any) => {
           </View>
         </View>
         <View style={styles.cardsList}>
-          {CardData.map(({balance,cardName,cvv,expiryDate,image,lastFourDigits},index) => (
-            <CardTemplate key={index} balance={balance} cardName={cardName} cvv={cvv} expiryDate={expiryDate} image={image} lastFourDigits={lastFourDigits} index={index} navigation={navigation} />
-          ))}
+          {CardData.map(
+            (
+              { balance, cardName, cvv, expiryDate, image, lastFourDigits,id },
+              index
+            ) => (
+              <Pressable onPress={() =>handlePress(id)}>
+                <CardTemplate
+                  key={index}
+                  balance={balance}
+                  cardName={cardName}
+                  cvv={cvv}
+                  expiryDate={expiryDate}
+                  image={image}
+                  lastFourDigits={lastFourDigits}
+                  index={index}
+                  navigation={navigation}
+                />
+              </Pressable>
+            )
+          )}
 
-          {/* <CardTemplate image={require('../assets/debit-cards1.png')} index={0} lastFourDigits={7876} balance={200} cvv={245} expiryDate='25/30' cardName='John Doe' /> */}
         </View>
       </ScrollView>
-      <Pressable onPress={() => navigation.navigate('addCard')} style={styles.addNew}>
-        <AddSvg/>
-        <Text style={{color:'#fff',fontWeight:'semibold',fontSize:16}} >New Card</Text>
+      <Pressable
+        onPress={() => navigation.navigate("addCard")}
+        style={styles.addNew}
+      >
+        <AddSvg />
+        <Text style={{ color: "#fff", fontWeight: "semibold", fontSize: 16 }}>
+          New Card
+        </Text>
       </Pressable>
     </View>
   );
-}
+};
 
-export default Cards
+export default Cards;
 
 const styles = StyleSheet.create({
   container: {
@@ -85,16 +117,16 @@ const styles = StyleSheet.create({
     rowGap: hp(2.46),
   },
   addNew: {
-    position:'absolute',
-    top:'90%',
-    right:'5%',
+    position: "absolute",
+    top: "90%",
+    right: "5%",
     backgroundColor: "#25B14F",
-    flexDirection:'row',
-    justifyContent :'center',
-    alignItems:'center',
-    width:wp(41.33),
-    height:hp(6),
-    borderRadius:50,
-    columnGap:wp(2.66)
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: wp(41.33),
+    height: hp(6),
+    borderRadius: 50,
+    columnGap: wp(2.66),
   },
 });

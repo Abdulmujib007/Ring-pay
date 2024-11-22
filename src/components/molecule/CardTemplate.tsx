@@ -29,16 +29,16 @@ interface PropParams {
     
 }
 
-const CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardName,navigation, } : PropParams ) => {
+const   CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardName,navigation, } : PropParams ) => {
 
-    const dispatch = useDispatch()
-    const handlePress = () => {
-        dispatch(cardToShow(CardData[index]))
-        navigation.navigate('singlecard')
-    }
+    // const dispatch = useDispatch()
+    // const handlePress = () => {
+    //     dispatch(cardToShow(CardData[index]))
+    //     navigation.navigate('singlecard')
+    // }
 
   return (
-    <Pressable  onPress={handlePress} >
+    // <Pressable  onPress={handlePress} >
       <ImageBackground
         style={styles.image}
         source={image}
@@ -162,7 +162,7 @@ const CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardNa
           </View>
         </View>
       </ImageBackground>
-    </Pressable>
+    // </Pressable>
   );
 };
 
