@@ -12,25 +12,27 @@ import { logInValidationSchema as validationSchema } from "../utils/yupValidatio
 import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
 import { getUser } from "../../helper";
 import Toast from "react-native-toast-message";
+import { useState } from "react";
 
 export default function Login({ navigation }: any) {
+  const [text, setText] = useState('Log in')
   const initialValues = {
     email: "",
     password: "",
   };
 
   const onSubmit = async (values : FormikValues) => {
-
+        setText('Loading...')
     try{
       const data = await getUser({
         email: values.email,
         password: values.password,
       });
       navigation.replace("drawerTab");
-      console.log(data);
+      // console.log(data);
     }
     catch(exception : any){
-        console.log(exception.message)
+        // console.log(exception.message)
         Toast.show({
           type:'error',
           text1:'Invalid Email or Password',
@@ -39,6 +41,7 @@ export default function Login({ navigation }: any) {
 
         })
     }
+    setText('Log in')
   };
 
 
@@ -91,7 +94,7 @@ export default function Login({ navigation }: any) {
         >
           Forget Password?
         </Text>
-        <AppButton text="Log In" onPress={() => formik.handleSubmit()} />
+        <AppButton text={text} onPress={() => formik.handleSubmit()} />
         <GoogleLogin />
       </View>
       <GoogleSignUpModal />

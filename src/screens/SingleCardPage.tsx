@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import CardTemplate from "../components/molecule/CardTemplate";
 import {
@@ -22,14 +22,14 @@ import CardDetails from "../components/atom/CardDetails";
 
 const SIngleCardPage = ({ navigation }: any) => {
   const cardData = useSelector((state: any) => state.cardToShow);
-
+  const [showMore, setShowMore] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const handleCardDetails = () => {
     bottomSheetRef.current?.expand();
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key={`container${cardData.id}`}>
       <BackBtn text="Title" navigation={navigation} />
       <View style={styles.card}>
         <CardTemplate
@@ -42,22 +42,36 @@ const SIngleCardPage = ({ navigation }: any) => {
           index={cardData.id}
           key={cardData.id}
         />
-        <View style={{ alignItems: "center" }}>
-          <Image source={require("../assets/Ellipse 9.png")} />
+        <View key={`view${cardData.id}`} style={{ alignItems: "center" }}>
+          <Image
+            key={`img${cardData.id}`}
+            source={require("../assets/Ellipse 9.png")}
+          />
         </View>
       </View>
       <View style={styles.editCard}>
         <Pressable onPress={handleCardDetails}>
           <EditCard svg={<DetailsSvg />} text="Details" />
         </Pressable>
-        <Pressable onPress={() => navigation.navigate('fundCard')}>
+        <Pressable onPress={() => navigation.navigate("fundCard")}>
           <EditCard
             text="Add Fund"
             svg={<FontAwesome6 name="plus" size={18} color="black" />}
           />
         </Pressable>
         <EditCard text="Freeze" svg={<FreezeSvg />} />
-        <EditCard text="More" svg={<MoreSvg />} />
+        <View style={{ height: hp(6.5) }}>
+          <Pressable onPress={() => setShowMore((prevValue) => !prevValue)}>
+            <EditCard text="More" svg={<MoreSvg />} />
+          </Pressable>
+          {showMore && (
+            <View style={{}}>
+              <Text style={{ fontSize: 12 }}>Delete Card</Text>
+              <Text style={{ fontSize: 12 }}>Withdraw Fund</Text>
+              <Text style={{ fontSize: 12 }}>Change Pin</Text>
+            </View>
+          )}
+        </View>
       </View>
       <View style={styles.transactionView}>
         <Text style={{ fontSize: 18, fontWeight: "bold" }}>Transactions</Text>
@@ -139,9 +153,10 @@ const styles = StyleSheet.create({
   },
   editCard: {
     marginTop: hp(2.46),
-    marginLeft: wp(13),
-    marginRight: wp(18.4),
-    justifyContent: "space-between",
+    // marginLeft: wp(13),
+    columnGap:wp(6.4),
+    // marginRight: wp(18.4),
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     // backgroundColor: "#D9D9D9",

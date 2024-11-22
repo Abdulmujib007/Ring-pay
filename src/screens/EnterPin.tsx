@@ -9,6 +9,9 @@ import BackBtn from "../components/atom/BackBtn";
 import AppButton from "../components/atom/AppButton";
 
 const EnterPin = ({ navigation }: any) => {
+  const handlePress = () => {
+    navigation.navigate('singlecard')
+  }
   return (
     <View style={styles.container}>
       <BackBtn navigation={navigation} />
@@ -16,7 +19,7 @@ const EnterPin = ({ navigation }: any) => {
       <Text style={styles.text2}>Enter your transaction pin</Text>
       <PinInput2 pinType="Enter" />
       <View style={styles.appBtn}>
-        <AppButton text="Fund Card" />
+        <AppButton text="Fund Card" onPress={handlePress} />
       </View>
     </View>
   );

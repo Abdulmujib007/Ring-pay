@@ -25,10 +25,11 @@ interface PropParams {
     expiryDate:string;
     cvv:number;
     cardName:string;
-    navigation? :any
+    navigation? :any,
+    
 }
 
-const CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardName,navigation } : PropParams ) => {
+const CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardName,navigation, } : PropParams ) => {
 
     const dispatch = useDispatch()
     const handlePress = () => {
@@ -37,7 +38,7 @@ const CardTemplate = ({lastFourDigits, image,index,balance,cvv,expiryDate,cardNa
     }
 
   return (
-    <Pressable onPress={handlePress} >
+    <Pressable  onPress={handlePress} >
       <ImageBackground
         style={styles.image}
         source={image}
