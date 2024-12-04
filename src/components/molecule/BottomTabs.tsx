@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import Foundation from "@expo/vector-icons/Foundation";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -6,13 +5,10 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../../screens/Home";
-import HomeSvg from "../atom/icons/HomeSvg";
 import { BottomTabParams } from "../../utils/types";
-import Cards from "../../screens/Cards";
-import Accounts from "../../screens/Accounts";
 import Transactions from "../../screens/Transactions";
-import DrawerTabs from "./DrawerTabs";
 import CardTabs from "./CardTabs";
+import AccountTabs from "./AccountTabs";
 
 const Tab = createBottomTabNavigator<BottomTabParams>();
 const BottomTabs = () => {
@@ -51,7 +47,7 @@ const BottomTabs = () => {
       />
       <Screen
         name="Accounts"
-        component={Accounts}
+        component={AccountTabs}
         options={{
           tabBarIcon: ({ color }) => {
             return (
