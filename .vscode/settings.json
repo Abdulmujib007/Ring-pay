@@ -18,7 +18,8 @@
         "signup",
         "singlecard",
         "SME’s",
-        "Verif"
+        "Verif",
+        "Wema"
     ],
     "files.autoSave": "onFocusChange",
     "files.autoSaveWhenNoErrors": true

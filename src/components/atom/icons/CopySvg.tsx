@@ -8,6 +8,7 @@ const CopySvg = (props: SvgProps) => (
     {...props}
   >
     <G
+      
       stroke="#D7D7D7"
       strokeLinecap="round"
       strokeLinejoin="round"

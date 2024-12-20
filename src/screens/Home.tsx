@@ -11,8 +11,7 @@ import QuickAccessCards from "../components/atom/QuickAccessCards";
 import { quickAccessData } from "../utils/constants";
 import Transaction from "../components/molecule/Transaction";
 import { transactionData } from "../utils/constants";
-import { NavigationProp } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+
 
 export default function Home({navigation}: any) {
   const separatorComponent = () => {
