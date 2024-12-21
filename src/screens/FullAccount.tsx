@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import {
   heightPercentageToDP as hp,
@@ -11,7 +11,10 @@ import UsaFlagSvg from "../components/atom/icons/UsaFlagSvg";
 import AccountTemplate from "../components/molecule/AccountTemplate";
 import { ScrollView } from "react-native-gesture-handler";
 
-const FullAccount = () => {
+const FullAccount = ({navigation} : any) => {
+  const handlePress = () => {
+      navigation.navigate('accDetails')
+  }
   return (
     <View style={styles.container}>
       <NavBar svgColor="Dark" />
@@ -32,9 +35,18 @@ const FullAccount = () => {
       </View>
       <ScrollView>
         <View style={styles.scroll}>
-          <AccountTemplate accountDetail="Primary Account" color={"colored"} />
-          <AccountTemplate accountDetail="Shopping" color="plain" />
-          <AccountTemplate color="plain" accountDetail="Purchase" />
+          <Pressable onPress={handlePress}  >
+            <AccountTemplate
+              accountDetail="Primary Account"
+              color={"colored"}
+            />
+          </Pressable>
+          <Pressable onPress={handlePress} >
+            <AccountTemplate accountDetail="Shopping" color="plain" />
+          </Pressable>
+          <Pressable onPress={handlePress}>
+            <AccountTemplate color="plain" accountDetail="Purchase" />
+          </Pressable>
         </View>
       </ScrollView>
     </View>
