@@ -184,8 +184,8 @@ const Accounts = ({ navigation }: any) => {
       <ScrollView>
 
       <View style={{paddingHorizontal:wp(4.26),rowGap:hp(2)}}>
-          {transactionData.map(({amount,amountColor,image,method,time}) => (
-              <Transaction amount={amount} amountColor={amountColor} image={image} method={method} time={time} />
+          {transactionData.map(({amount,amountColor,image,method,time},index) => (
+              <Transaction key={index} amount={amount} amountColor={amountColor} image={image} method={method} time={time} />
           ))}
       </View>
       </ScrollView>

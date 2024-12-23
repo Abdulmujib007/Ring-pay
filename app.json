@@ -1,5 +1,6 @@
 {
   "expo": {
+    "newArchEnabled": true,
     "name": "ring-pay",
     "slug": "ring-pay",
     "version": "1.0.0",
