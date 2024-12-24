@@ -10,26 +10,35 @@ import SetCurrency from './screens/SetCurrency'
 import Login from './screens/Login'
 import ForgotPassword from './screens/ForgotPassword'
 import DrawerTabs from './components/molecule/DrawerTabs'
-import FundCard from './screens/FundCard'
+import { useSelector } from 'react-redux'
+// import FundCard from './screens/FundCard'
 
 const stack = createStackNavigator<RootParams>()
 export default function AppRoutes() {
     const {Navigator ,Screen} = stack
+    const appReducer : any = useSelector((state : any ) => state.persists)
+    console.log(appReducer)
   return (
     <View style={styles.container}>
-        <Navigator screenOptions={{headerShown:false}} initialRouteName='onboarding'>
-            <Screen name="onboarding" component={Onboarding}/>
-            <Screen name='sighup' component={SignUp} />
-            <Screen name='emailVerification' component={EmailVerification} />
-            <Screen name='setpin' component={SetPin}  />
-            <Screen name='setcurrency' component={SetCurrency} />
-            <Screen name='login' component={Login} />
-            <Screen name='forgotPassword' component={ForgotPassword} />
-            <Screen name='drawerTab' component={DrawerTabs} />
-            {/* <Screen name='fundCard' component={FundCard} /> */}
-        </Navigator>
+      <Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="onboarding"
+      >
+     {
+      !appReducer.onBoarding && (
+           <Screen name="onboarding" component={Onboarding} />
+      )
+     }
+        <Screen name="sighup" component={SignUp} />
+        <Screen name="emailVerification" component={EmailVerification} />
+        <Screen name="setpin" component={SetPin} />
+        <Screen name="setcurrency" component={SetCurrency} />
+        <Screen name="login" component={Login} />
+        <Screen name="forgotPassword" component={ForgotPassword} />
+        <Screen name="drawerTab" component={DrawerTabs} />
+      </Navigator>
     </View>
-  )
+  );
 }
 const styles = StyleSheet.create({
   container: {

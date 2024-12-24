@@ -28,7 +28,7 @@ export default function Login({ navigation }: any) {
         email: values.email,
         password: values.password,
       });
-      navigation.replace("drawerTab");
+      navigation.navigate("drawerTab");
       // console.log(data);
     }
     catch(exception : any){

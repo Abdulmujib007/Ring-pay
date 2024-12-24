@@ -5,12 +5,21 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import AppButton from "../components/atom/AppButton";
+import { useDispatch } from "react-redux";
+import { setOnBoarding } from "../utils/onBoardingSlice";
+
 export default function Onboarding({ navigation }: any) {
-  // const { replace } = navigation;
+  const dispatch = useDispatch();
+
   const handleSighup = () => {
-    // replace("sighup");
     navigation.navigate("sighup");
+    dispatch(setOnBoarding({onBoarding:true}))
   };
+  const handleLogin = () => {
+      navigation.navigate("login");
+      dispatch(setOnBoarding({onBoarding :true}))
+    }
+
   return (
     <View style={styles.container}>
       <Image
@@ -26,7 +35,7 @@ export default function Onboarding({ navigation }: any) {
           <AppButton text={"Create Account"} onPress={handleSighup} />
         </View>
       </View>
-        <Text onPress={() => navigation.replace('login')} style={styles.login}>Already have an Account? Login</Text>
+        <Text onPress={handleLogin} style={styles.login}>Already have an Account? Login</Text>
     </View>
   );
 }
