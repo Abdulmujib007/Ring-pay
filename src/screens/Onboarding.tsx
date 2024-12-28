@@ -13,7 +13,7 @@ export default function Onboarding({ navigation }: any) {
 
   const handleSighup = () => {
     navigation.navigate("sighup");
-    dispatch(setOnBoarding({onBoarding:true}))
+    dispatch(setOnBoarding(true))
   };
   const handleLogin = () => {
       navigation.navigate("login");
