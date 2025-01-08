@@ -23,27 +23,20 @@ export default function Login({ navigation }: any) {
     password: "",
   };
   const dispatch = useDispatch();
-  const logIn = useSelector((state: any) => state.persistAuthReducer);
   const onSubmit = async (values: FormikValues) => {
     setText("Loading...");
-    console.log({ values });
     try {
-      const data = await getUser({username:values.email,password: values.password});
+      const data = await getUser({
+        username: values.email,
+        password: values.password,
+      });
       if (data) {
         dispatch(login(data));
       }
-      console.log({ logIn });
-      // navigation.navigate("drawerTab");
-    } catch (error: any) {
-      console.log(error.message);
-      Toast.show({
-        type: "error",
-        text1: "Invalid Email or Password",
-        text2: error.message,
-        visibilityTime: 5000,
-      });
+    } catch (exception) {
+    } finally {
+      setText("Log in");
     }
-    setText("Log in");
   };
 
   const formik = useFormik({

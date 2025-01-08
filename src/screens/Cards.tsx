@@ -55,9 +55,9 @@ const Cards = ({ navigation }: any) => {
               { balance, cardName, cvv, expiryDate, image, lastFourDigits,id },
               index
             ) => (
-              <Pressable onPress={() =>handlePress(id)}>
+              <Pressable key={id} onPress={() =>handlePress(id)}>
                 <CardTemplate
-                  key={index}
+                  key={id}
                   balance={balance}
                   cardName={cardName}
                   cvv={cvv}

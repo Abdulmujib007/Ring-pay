@@ -1,26 +1,24 @@
 import axios from "axios";
-// const baseUrl = "https://hospital-ooo.vercel.app";
-// const signInUrl = `${baseUrl}/user/signin`;
-// const signUpUrl = `${baseUrl}/user/signup` 
-const baseUrl = 'https://dummyjson.com'
+import { baseUrl } from "./src/utils/config";
+import Toast from "react-native-toast-message";
 
 export const getUser = async (userInfo) => {
-
-  
-  console.log(userInfo)
-  try{
-    const  {data} = await axios.post(
-      "https://dummyjson.com/auth/login",
+  try {
+    const { data } = await axios.post(`${baseUrl}/auth/login`,
       userInfo
     );
-    console.log({data})
-    return data
-  }catch(error) {
-      console.log({error})
+    return data;
+  } catch (error) {
+    console.log({ error });
+    Toast.show({
+      type: "error",
+      text1: "Invalid Email or Password",
+      text2: "pls try again",
+      visibilityTime: 5000,
+    });
   }
-
 };
 export const addUser = async (newUserData) => {
-  const response = await axios.post(signUpUrl,newUserData)
-  return response.data
-}
+  const response = await axios.post(signUpUrl, newUserData);
+  return response.data;
+};
