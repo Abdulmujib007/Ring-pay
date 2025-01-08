@@ -14,11 +14,14 @@ import ProfileSvg from "../atom/icons/ProfileSvg";
 import SettingsSvg from "../atom/icons/SettingsSvg";
 import LogoutSvg from "../atom/icons/LogoutSvg";
 import { NavigationContainerProps, useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { logout } from "../../utils/authReducer";
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
     const {navigation} = props
     const stackNavigation : any = useNavigation()
-  return (
+    const dispatch = useDispatch()
+    return (
     <View
       style={{ marginTop: hp(7.9), paddingHorizontal: wp(5.33) }}
       {...props}
@@ -87,7 +90,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             paddingLeft:wp(5.33),
             paddingTop:hp(1.97)
           }}
-          onPress={() => stackNavigation.replace('login') }
+          onPress={() => dispatch(logout())  }
         >
           <LogoutSvg />
           <Text

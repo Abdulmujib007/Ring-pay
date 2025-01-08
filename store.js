@@ -3,6 +3,8 @@ import modalReducer from "./src/utils/modalSlice";
 import singleCardPageReducer from "./src/utils/singleCardPageSlice";
 // import persistReducer from "./src/utils/onBoardingSlice";
 import persists from "./src/utils/onBoardingSlice";
+import persistAuthReducer from "./src/utils/authReducer";
+
 
 import {
   FLUSH,
@@ -19,6 +21,7 @@ export const store = configureStore({
     modalVisibility: modalReducer,
     cardToShow: singleCardPageReducer,
     persists,
+    persistAuthReducer
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({

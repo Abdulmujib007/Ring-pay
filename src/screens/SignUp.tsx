@@ -13,7 +13,6 @@ import BackBtn from "../components/atom/BackBtn";
 import { FormikValues, useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
-// import PasswordFormInput from "../components/molecule/PasswordFormInput";
 import { signUpValidationSchema as validationSchema } from "../utils/yupValidationSchema";
 import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
 import { addUser } from "../../helper";
@@ -59,7 +58,7 @@ export default function SignUp({ navigation }: any) {
   return (
     <View style={styles.container}>
       <KeyboardAvoidView>
-        <BackBtn navigation={navigation} />
+        {/* <BackBtn navigation={navigation} /> */}
         <View style={styles.textView}>
           <Text style={styles.createText}>Create Account</Text>
           <Text style={styles.lessThanMinText}>
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
 
   textView: {
     paddingHorizontal: wp(4.27),
-    paddingTop: hp(2),
+    paddingTop: hp(4  ),
   },
   createText: {
     fontWeight: "bold",

@@ -5,7 +5,7 @@ import {
 } from "react-native-responsive-screen";
 import BackBtn from "../components/atom/BackBtn";
 import FormInput from "../components/atom/FormInput";
-import { FormikFormProps, FormikValues, useFormik } from "formik";
+import { FormikValues, useFormik } from "formik";
 import AppButton from "../components/atom/AppButton";
 import GoogleLogin from "../components/molecule/GoogleLogin";
 import { logInValidationSchema as validationSchema } from "../utils/yupValidationSchema";
@@ -13,38 +13,38 @@ import GoogleSignUpModal from "../components/organism/GoogleSignUpModal";
 import { getUser } from "../../helper";
 import Toast from "react-native-toast-message";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../utils/authReducer";
 
 export default function Login({ navigation }: any) {
-  const [text, setText] = useState('Log in')
+  const [text, setText] = useState("Log in");
   const initialValues = {
     email: "",
     password: "",
   };
-
-  const onSubmit = async (values : FormikValues) => {
-        setText('Loading...')
-    try{
-      const data = await getUser({
-        email: values.email,
-        password: values.password,
+  const dispatch = useDispatch();
+  const logIn = useSelector((state: any) => state.persistAuthReducer);
+  const onSubmit = async (values: FormikValues) => {
+    setText("Loading...");
+    console.log({ values });
+    try {
+      const data = await getUser({username:values.email,password: values.password});
+      if (data) {
+        dispatch(login(data));
+      }
+      console.log({ logIn });
+      // navigation.navigate("drawerTab");
+    } catch (error: any) {
+      console.log(error.message);
+      Toast.show({
+        type: "error",
+        text1: "Invalid Email or Password",
+        text2: error.message,
+        visibilityTime: 5000,
       });
-      navigation.navigate("drawerTab");
-      // console.log(data);
     }
-    catch(exception : any){
-        // console.log(exception.message)
-        Toast.show({
-          type:'error',
-          text1:'Invalid Email or Password',
-          text2:'Pls try again!',
-          visibilityTime:5000,
-
-        })
-    }
-    setText('Log in')
+    setText("Log in");
   };
-
-
 
   const formik = useFormik({
     initialValues,

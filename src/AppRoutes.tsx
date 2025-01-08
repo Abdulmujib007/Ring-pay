@@ -10,32 +10,39 @@ import SetCurrency from './screens/SetCurrency'
 import Login from './screens/Login'
 import ForgotPassword from './screens/ForgotPassword'
 import DrawerTabs from './components/molecule/DrawerTabs'
+import { useAuthUser } from './utils/commonHooks'
 import { useSelector } from 'react-redux'
-// import FundCard from './screens/FundCard'
 
 const stack = createStackNavigator<RootParams>()
 export default function AppRoutes() {
     const {Navigator ,Screen} = stack
     const appReducer : any = useSelector((state : any ) => state.persists)
-    console.log(appReducer)
+    // 
+    // const console.log(appReducer)
+    const {isLoggedIn} = useAuthUser()
   return (
     <View style={styles.container}>
       <Navigator
         screenOptions={{ headerShown: false }}
         initialRouteName="onboarding"
       >
-     {
-      !appReducer.onBoarding && (
-           <Screen name="onboarding" component={Onboarding} />
-      )
-     }
-        <Screen name="sighup" component={SignUp} />
-        <Screen name="emailVerification" component={EmailVerification} />
-        <Screen name="setpin" component={SetPin} />
-        <Screen name="setcurrency" component={SetCurrency} />
-        <Screen name="login" component={Login} />
-        <Screen name="forgotPassword" component={ForgotPassword} />
-        <Screen name="drawerTab" component={DrawerTabs} />
+        {isLoggedIn ? (
+          <>
+            <Screen name="drawerTab" component={DrawerTabs} />
+          </>
+        ) : (
+          <>
+            {!appReducer.onBoarding && (
+              <Screen name="onboarding" component={Onboarding} />
+            )}
+            <Screen name="sighup" component={SignUp} />
+            <Screen name="emailVerification" component={EmailVerification} />
+            <Screen name="setpin" component={SetPin} />
+            <Screen name="setcurrency" component={SetCurrency} />
+            <Screen name="login" component={Login} />
+            <Screen name="forgotPassword" component={ForgotPassword} />
+          </>
+        )}
       </Navigator>
     </View>
   );
